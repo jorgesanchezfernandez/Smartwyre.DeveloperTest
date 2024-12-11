@@ -6,6 +6,8 @@ using System.Linq;
 
 namespace Smartwyre.DeveloperTest.Factory;
 
+
+// Centralises strategy selection, ensuring the system is easily extensible for new incentive types.
 public class RebateCalculationFactory(IEnumerable<IRebateCalculationStrategy> strategies) : IRebateCalculationFactory
 {
     public IRebateCalculationStrategy GetStrategy(IncentiveType incentiveType)
