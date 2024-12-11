@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Smartwyre.DeveloperTest.Facade;
 using Smartwyre.DeveloperTest.Factory;
 using Smartwyre.DeveloperTest.Services;
 using Smartwyre.DeveloperTest.Strategy;
@@ -13,12 +14,14 @@ class Program
     {
         //Registering the dependency injection
         var serviceProvider = new ServiceCollection()
-            .AddSingleton<RebateCalculationFactory>()
+            .AddSingleton<IRebateServiceFacade, RebateServiceFacade>()
+            .AddSingleton<IRebateCalculationFactory, RebateCalculationFactory>()
             .AddTransient<IRebateService, RebateService>()
             .AddSingleton<IRebateCalculationStrategy, FixedCashAmountStrategy>()
             .AddSingleton<IRebateCalculationStrategy, FixedRateRebateStrategy>()
             .AddSingleton<IRebateCalculationStrategy, AmountPerUomStrategy>()
             .BuildServiceProvider();
+
 
         // Get the rebate service
         var rebateService = serviceProvider.GetService<IRebateService>();

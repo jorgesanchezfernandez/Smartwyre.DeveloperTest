@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Smartwyre.DeveloperTest.Factory;
 
-public class RebateCalculationFactory(IEnumerable<IRebateCalculationStrategy> strategies)
+public class RebateCalculationFactory(IEnumerable<IRebateCalculationStrategy> strategies) : IRebateCalculationFactory
 {
     public IRebateCalculationStrategy GetStrategy(IncentiveType incentiveType)
     {
