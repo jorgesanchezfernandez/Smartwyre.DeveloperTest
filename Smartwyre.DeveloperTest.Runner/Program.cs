@@ -26,19 +26,42 @@ class Program
             .AddSingleton<IRebateCalculationStrategy, AmountPerUomStrategy>()
             .BuildServiceProvider();
 
-
         // Get the rebate service
         var rebateService = serviceProvider.GetService<IRebateService>();
 
-        // Example
+        // Request data from the user
+        Console.WriteLine("Enter the rebate identifier:");
+        string rebateIdentifier = Console.ReadLine();
+
+        Console.WriteLine("Enter the product identifier:");
+        string productIdentifier = Console.ReadLine();
+
+        Console.WriteLine("Enter the volume:");
+        if (!decimal.TryParse(Console.ReadLine(), out decimal volume))
+        {
+            Console.WriteLine("The volume must be a valid decimal number.");
+            return;
+        }
+
+        // Create the rebate request
         var request = new CalculateRebateRequest
         {
-            RebateIdentifier = "REBATE123",
-            ProductIdentifier = "PRODUCT456",
-            Volume = 10
+            RebateIdentifier = rebateIdentifier,
+            ProductIdentifier = productIdentifier,
+            Volume = volume
         };
 
+        // Calculate the rebate result
         var result = rebateService.Calculate(request);
-        Console.WriteLine($"Calculation Success: {result.Success}");
+
+        // Show the results
+        if (result.Success)
+        {
+            Console.WriteLine("The calculation was successful!");
+        }
+        else
+        {
+            Console.WriteLine("The calculation failed. Please check the data entered.");
+        }
     }
 }
