@@ -7,8 +7,8 @@ This project implements a solution to calculate rebates based on different types
 1. **Extensible and Modular Design**:
    - The **Strategy** pattern was used to encapsulate the calculation logic for each incentive type (`FixedCashAmount`, `FixedRateRebate`, `AmountPerUom`).
    - The **Factory** pattern simplifies the selection of the appropriate strategy at runtime.
-   - The **Facade** pattern was implemented to simplify interactions with multiple data sources (`RebateDataStore`, `ProductDataStore`) and to centralize orchestration logic for the `RebateService`, improving readability and maintainability.
-   - **Dependency Injection** was implemented to decouple classes and improve testability. This approach ensures that components like `RebateService`, `RebateServiceFacade`, and `RebateCalculationFactory` can be easily replaced or mocked, facilitating unit testing and enhancing maintainability.
+   - The **Facade** pattern was implemented to simplify interactions with multiple data sources (`RebateDataStore`, `ProductDataStore`, `CalculateRebateResultFactory`) and to centralize orchestration logic for the `RebateService`, improving readability and maintainability.
+   - **Dependency Injection** was implemented to decouple classes and improve testability. This approach ensures that components like `RebateService` and `RebateServiceFacade` can be easily replaced or mocked, facilitating unit testing and enhancing maintainability.
 
 2. **Unit Tests**:
    - Unit tests were developed for critical classes, including:
