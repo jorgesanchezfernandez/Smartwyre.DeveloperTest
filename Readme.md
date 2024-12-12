@@ -49,6 +49,5 @@ Despite this limitation:
 - The solution adheres to the exercise's requirements and is ready for future extensions.
 
 ## Future Possible Improvements
-- Add integration tests to validate the complete interaction between classes.
 - Incorporate more robust input validation in the executable program.
 - Improve test coverage for additional scenarios.
