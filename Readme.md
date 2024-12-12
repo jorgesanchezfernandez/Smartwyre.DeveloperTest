@@ -1,26 +1,52 @@
-# Smartwyre Developer Test Instructions
+# Smartwyre Developer Test
 
-In the 'RebateService.cs' file you will find a method for calculating a rebate. At a high level the steps for calculating a rebate are:
+## Description
+This project implements a solution to calculate rebates based on different types of incentives. The solution is designed to be extensible, making it easy to add new incentive types in the future.
 
- 1. Lookup the rebate that the request is being made against.
- 2. Lookup the product that the request is being made against.
- 2. Check that the rebate and request are valid to calculate the incentive type rebate.
- 3. Store the rebate calculation.
+## What Has Been Implemented
+1. **Extensible and Modular Design**:
+   - The **Strategy** pattern was used to encapsulate the calculation logic for each incentive type (`FixedCashAmount`, `FixedRateRebate`, `AmountPerUom`).
+   - The **Factory** pattern simplifies the selection of the appropriate strategy at runtime.
 
-What we'd like you to do is refactor the code with the following things in mind:
+2. **Unit Tests**:
+   - Unit tests were developed for critical classes, including:
+     - `RebateService`.
+     - Incentive calculation strategies.
+     - `RebateServiceFacade`.
+   - These tests ensure the system behaves correctly in the main scenarios.
 
- - Adherence to SOLID principles
- - Testability
- - Readability
- - Currently there are 3 known incentive types. In the future the business will want to add many more incentive types. Your solution should make it easy for developers to add new incentive types in the future.
+3. **Extensibility**:
+   - New incentive types can be added by creating a new strategy that implements `IRebateCalculationStrategy`.
+   - The registration logic is clear and easy to maintain.
 
-We’d also like you to 
- - Add some unit tests to the Smartwyre.DeveloperTest.Tests project to show how you would test the code that you’ve produced 
- - Run the RebateService from the Smartwyre.DeveloperTest.Runner console application accepting inputs
+4. **Workflow Documentation**:
+   - The code includes comments to facilitate understanding and maintenance.
 
-The only specific 'rules' are:
+## How to Run the Project
+1. Build the project:
+   ```bash
+   dotnet build
+   ```
+2. Run the tests:
+   ```bash
+   dotnet test
+   ```
+3. Execute the program:
+   ```bash
+   dotnet run
+   ```
 
-- The solution should build
-- The tests should all pass
+## Note About Data
+This project does not include valid data for `RebateDataStore` or `ProductDataStore`, as per the exercise's specifications. As a result:
+- The program will not produce meaningful results.
+- The focus of the exercise is on code structure, extensibility, and meeting the functional requirements.
 
-You are free to use any frameworks/NuGet packages that you see fit. You should plan to spend around 1 hour completing the exercise.
+Despite this limitation:
+- The code compiles successfully.
+- All unit tests pass.
+- The solution adheres to the exercise's requirements and is ready for future extensions.
+
+## Future Possible Improvements
+- Add integration tests to validate the complete interaction between classes.
+- Incorporate more robust input validation in the executable program.
+- Improve test coverage for additional scenarios.
